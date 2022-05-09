@@ -23,6 +23,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { FormsModule } from '@angular/forms';
     MatCardModule,
     MatButtonModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+ 
 
     
   ],
