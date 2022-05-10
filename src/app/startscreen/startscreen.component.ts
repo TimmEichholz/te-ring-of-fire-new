@@ -27,10 +27,12 @@ export class StartscreenComponent implements OnInit {
           "playedCard": this.game.toJson().playedCard,
             "players": this.game.toJson().players,
               "stack": this.game.toJson().stack,
+              "pickCardAnimation":this.game.toJson().pickCardAnimation,
+              "currentCard":this.game.toJson().currentCard,
     })
 
 
-alert(docRef.id)
+
    this.router.navigateByUrl('game/'+docRef.id)
   }
 }

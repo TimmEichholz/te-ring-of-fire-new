@@ -38,7 +38,7 @@ export class GameComponent implements OnInit {
     this.newGame();
 
     this.route.params.subscribe((params) => {
-      console.log("params:", params['id']);
+
       this.gameId = params['id'];
 
 
@@ -62,7 +62,7 @@ export class GameComponent implements OnInit {
 const unsub = onSnapshot(doc(this.firestore, "games", this.gameId), (doc) =>{
 
   const gameUpdate:any = doc.data()
-  console.log("game Infos:", gameUpdate);
+
   this.game.currentPlayer = gameUpdate['currentPlayer']
   this.game.players = gameUpdate['players']
   this.game.stack = gameUpdate['stack']
@@ -82,26 +82,6 @@ const unsub = onSnapshot(doc(this.firestore, "games", this.gameId), (doc) =>{
     this.game = new Game();
 
 
-    /*
-        const docRef = await addDoc(collection(this.firestore, 'games', ),
-          {
-            "currentPlayer":this.game.toJson().currentPlayer,
-              "playedCard": this.game.toJson().playedCard,
-                "players": this.game.toJson().players,
-                  "stack": this.game.toJson().stack,
-        })
-       console.log("docRef", docRef['id']);
-     /*
-        
-       const docRef = await addDoc(collection(this.firestore, "cities"), {
-        name: "Tokyo",
-        country: "Japan"
-      });
-      console.log("Document written with ID: ", docRef.id);
-    */
-
-
-
 
   }
 
@@ -109,7 +89,7 @@ const unsub = onSnapshot(doc(this.firestore, "games", this.gameId), (doc) =>{
     if (!this.game.pickCardAnimation) {
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true
-      this.saveGame()
+  
 
       if(this.game.players.length >= 1){
       this.game.currentPlayer++;
@@ -121,6 +101,7 @@ const unsub = onSnapshot(doc(this.firestore, "games", this.gameId), (doc) =>{
 
 
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+      this.saveGame()
      }
       setTimeout(() => {
         this.game.pickCardAnimation = false;
@@ -136,17 +117,17 @@ const unsub = onSnapshot(doc(this.firestore, "games", this.gameId), (doc) =>{
 
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
-        console.log("vor save", this.game);
-
         this.game.players.push(name)
         this.saveGame()
-        console.log("nach save", this.game);
+        
 
       }
     });
   }
 
   saveGame() {
+
+    //easy and old method. Future update to current method from firebase.google.com
     updateDoc(doc(this.firestore, "games", this.gameId), {
       "currentPlayer": this.game.toJson().currentPlayer,
       "playedCard": this.game.toJson().playedCard,
