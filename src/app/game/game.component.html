@@ -1,8 +1,8 @@
 <app-player 
-*ngFor="let player of game.players; let i =index;" 
+*ngFor="let players of game.players; let i =index;" 
 [ngStyle]="{'top.px':100+(i * 70)}"
 [playerActive]="i == game.currentPlayer"
-[name]="player" 
+[name]="players" 
 class="player-position">
 </app-player>
 
@@ -30,9 +30,9 @@ class="player-position">
         (click)="pickCard()"
         class="pick-card"
         [ngStyle]="{'bottom.px':8*4}"
-        *ngIf="pickCardAnimation"
+        *ngIf="game.pickCardAnimation"
 
-        src="assets/img/{{currentCard}}.png" alt="">
+        src="assets/img/{{game.currentCard}}.png" alt="">
 
       
     </div>
@@ -44,4 +44,4 @@ class="player-position">
     <mat-icon>add</mat-icon>
   </button>
 
-  <app-game-description [card]="currentCard" class="game-info"></app-game-description>
+  <app-game-description [card]="game.currentCard" class="game-info"></app-game-description>
