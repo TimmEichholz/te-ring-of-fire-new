@@ -5,6 +5,8 @@ export class Game {
     public currentPlayer: number = 0;
  public  pickCardAnimation = false;
   public  currentCard: string | any = "";
+  public playerPictures: string[]=[];
+  public distance: number=322;
 
     constructor() {
         for (let i = 1; i < 14; i++) {
@@ -19,11 +21,14 @@ export class Game {
     public toJson() {
         return {
             players: this.players,
+            playerPictures: this.playerPictures,
             stack: this.stack,
             playedCard: this.playedCard,
             currentPlayer: this.currentPlayer,
             pickCardAnimation: this.pickCardAnimation,
-            currentCard: this.currentCard
+            currentCard: this.currentCard,
+            distance: this.distance
+       
         }
     }
 }

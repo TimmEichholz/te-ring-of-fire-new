@@ -26,9 +26,12 @@ export class StartscreenComponent implements OnInit {
         "currentPlayer":this.game.toJson().currentPlayer,
           "playedCard": this.game.toJson().playedCard,
             "players": this.game.toJson().players,
+            "playerPictures": this.game.toJson().playerPictures,
+
               "stack": this.game.toJson().stack,
               "pickCardAnimation":this.game.toJson().pickCardAnimation,
               "currentCard":this.game.toJson().currentCard,
+              "distance":this.game.distance,
     })
 
 

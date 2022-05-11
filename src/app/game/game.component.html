@@ -1,26 +1,48 @@
+<div class="scrollcontainer">
 <app-player 
+
 *ngFor="let players of game.players; let i =index;" 
-[ngStyle]="{'top.px':100+(i * 70)}"
+(click)="editPlayer(i)"
+[playerActive]="i == game.currentPlayer"
+[ngStyle]="{'top.px':(i==game.currentPlayer)?30:100+(i * 70)}"
+
+
+
+
+[name]="players" 
+[profil]="game.playerPictures[i]"
+class="player-position pc-hide">
+</app-player>
+</div>
+
+<div class="scrollcontainer">
+<app-player 
+
+*ngFor="let players of game.players; let i =index;" 
+(click)="editPlayer(i)"
+[ngStyle]="{'left.px':30+(i * 130)}"
 [playerActive]="i == game.currentPlayer"
 [name]="players" 
-class="player-position">
+class=" mobile-hide"
+[profil]="game.playerPictures[i]">
+
 </app-player>
-
-
+</div>
 
 <div class="field">
 
     <div class="card-stack">
         <img
-        [ngStyle]="{'bottom.px':i*4}"
-        *ngFor="let c of [0,1,2,3,4,5,6,7]; let i = index;" 
+        [ngStyle]="{'bottom.px':i*2}"
+        *ngFor="let c of game.stack; let i = index;" 
         src="assets/img/card_cover.png" alt="">
 
         <img
         
         (click)="pickCard()"
+        *ngIf="game.stack.length>=1"
         class="top-card"
-        [ngStyle]="{'bottom.px':8*4}"
+        [ngStyle]="{'bottom.px':game.stack.length*2}"
       
         src="assets/img/card_cover.png" alt="">
 
@@ -29,7 +51,8 @@ class="player-position">
       
         (click)="pickCard()"
         class="pick-card"
-        [ngStyle]="{'bottom.px':8*4}"
+        [ngStyle]="{'bottom.px': game.stack.length*2}"
+     
         *ngIf="game.pickCardAnimation"
 
         src="assets/img/{{game.currentCard}}.png" alt="">
@@ -44,4 +67,7 @@ class="player-position">
     <mat-icon>add</mat-icon>
   </button>
 
-  <app-game-description [card]="game.currentCard" class="game-info"></app-game-description>
+  <app-game-description  [card]="game.currentCard" class="game-info"></app-game-description>
+<div class="game-over" *ngIf="game.stack.length===0">
+  <h1 >Game Over</h1>
+</div>

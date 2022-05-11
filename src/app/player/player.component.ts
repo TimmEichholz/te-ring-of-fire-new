@@ -9,6 +9,9 @@ export class PlayerComponent implements OnInit {
 
   @Input() name!:string;
   @Input() playerActive:boolean = false;
+  @Input() playerLeft: boolean = false;
+  @Input() playerRight: boolean = false;
+  @Input() profil ="1.webp"
 
   constructor() { }
 

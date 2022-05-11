@@ -1,0 +1,12 @@
+.picture-box{
+
+        height:60px;
+        width:60px;
+        margin:8px;
+        border-radius: 100%;
+        cursor: pointer;
+    &:hover{
+        filter: brightness(1.15);
+    }
+
+}
